@@ -3,10 +3,15 @@ const context= require('../testing/Context');
 
 test('Http trigger example' , async()=> {
     const request = {
-        query: {name: 'abisel'}
+        query: {name: 'Abisel'}
     };
+ var interations = 1000000;
+ console.time('FUNCTION #1');
+ for(var i = 0; i<interations; i++){
 
-    await httpFuction(context, request);
-    expect(context.res.body).toEqual('Welcome, abisel');
-    expect(context.log.mock.calls.length).toBe(1);
+    httpFuction(context, request);
+ }
+    console.timeEnd('FUNCTION #1')
+    expect(context.res.body).toEqual('Welcome, Abisel');
+    expect(context.log.mock.calls.length).toBe(1000000);
 });
